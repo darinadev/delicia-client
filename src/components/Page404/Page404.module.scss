@@ -1,0 +1,17 @@
+@import "../../variables.scss";
+
+.page404 {
+  width: 1180px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 70px 0;
+
+  h1 {
+    font-size: 180px;
+    color: $accentColor;
+  }
+
+  p {
+    font-size: 24px;
+  }
+}

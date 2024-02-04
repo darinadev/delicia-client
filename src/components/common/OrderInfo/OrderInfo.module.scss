@@ -1,0 +1,131 @@
+@import "../../../variables.scss";
+@import "../../../mixins.scss";
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 15px;
+  padding: 10px 0;
+  background-color: $accentColor;
+
+  &.changable {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  h4 {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+    color: $bgColorDarker;
+  }
+
+  h4:first-child {
+    width: 350px;
+    padding-left: 25px;
+    text-align: left;
+  }
+}
+
+.table {
+  display: grid;
+  grid-row-gap: 15px;
+  margin-bottom: 15px;
+}
+
+.tableItem {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+
+  &.changable {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.product {
+  padding-left: 25px;
+  font-size: 17px;
+  font-weight: 400;
+
+  &:first-child {
+    width: 350px;
+  }
+}
+
+.quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  p {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    background-color: $accentColor;
+    transition: all 0.3s ease;
+
+    &:hover:enabled {
+      background-color: $accentColorHover;
+      transition: all 0.3s ease;
+    }
+
+    &:disabled {
+      background-color: #999999;
+      cursor: auto;
+    }
+
+    svg {
+      fill: $bgColorDarker;
+    }
+  }
+}
+
+.price,
+.subtotal {
+  text-align: center;
+}
+
+.removeBtn {
+  height: 22px;
+  margin: auto;
+  fill: $accentColor;
+  transition: all 0.3s ease;
+
+  &:hover {
+    fill: $accentColorHover;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+}
+
+.totalPrice {
+  display: flex;
+  padding: 10px 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+  background-color: $accentColor;
+  color: $bgColorDarker;
+
+  h4 {
+    margin-right: 5px;
+    margin-left: 25px;
+    font-weight: 500;
+  }
+
+  h4:nth-child(2) {
+    margin-left: 60px;
+  }
+}

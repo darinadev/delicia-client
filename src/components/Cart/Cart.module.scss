@@ -1,0 +1,171 @@
+@import "../../variables.scss";
+@import "../../mixins.scss";
+
+.cartEmpty {
+  width: 1180px;
+  margin: 0 auto;
+
+  p {
+    margin-bottom: 50px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  a {
+    @include btnYellow;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $bgColorDarker;
+
+    &:hover:before {
+      width: 100%;
+    }
+  }
+}
+
+.cart {
+  width: 1180px;
+  margin: 0 auto;
+
+  a {
+    @include btnYellow;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $bgColorDarker;
+
+    &:hover:before {
+      width: 100%;
+    }
+  }
+}
+
+.title {
+  width: 1180px;
+  margin: 50px auto;
+  font-size: 70px;
+  text-transform: uppercase;
+  color: $accentColor;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+
+  a:first-child {
+    margin-right: 20px;
+  }
+}
+
+.billingDetails {
+  h1 {
+    width: 1180px;
+    margin: 50px auto;
+    font-size: 70px;
+    text-transform: uppercase;
+    color: $accentColor;
+  }
+}
+
+.form {
+  width: 1180px;
+  margin: 0 auto;
+  margin-top: 50px;
+
+  h3 {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    font-size: 40px;
+    color: $accentColor;
+  }
+
+  label {
+    color: $accentColor;
+  }
+
+  input,
+  textarea {
+    caret-color: $bgColor;
+  }
+}
+
+.formItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  grid-column-gap: 50px;
+}
+
+.formItem {
+  width: 100%;
+
+  label {
+    @include formLabel;
+  }
+
+  input {
+    @include formField;
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  textarea {
+    @include formField;
+    height: 150px;
+    padding: 15px;
+  }
+}
+
+.formField {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.formValidation {
+  @include formFieldValidation;
+}
+
+.cartButton {
+  @include btnYellow;
+  margin-top: 40px;
+}
+
+.shipping {
+  position: relative;
+  font-size: 17px;
+  line-height: 1.7;
+
+  li {
+    list-style-type: none;
+  }
+
+  label {
+    color: $textColor;
+    position: relative;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: $textColor;
+      border-radius: 100px;
+      margin-right: 12px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    z-index: -1;
+    &:checked + label::before {
+      background-color: $accentColor;
+    }
+  }
+}

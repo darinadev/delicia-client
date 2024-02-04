@@ -1,0 +1,99 @@
+@import "../../variables.scss";
+@import "../../mixins.scss";
+
+.header {
+  @include pageHeader;
+}
+
+.title {
+  @include pageTitle;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 50px;
+  width: 1180px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 50px;
+  background-color: $accentColor;
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 50px;
+    font-weight: 500;
+    color: $bgColor;
+  }
+}
+
+.contactItem {
+  margin-bottom: 20px;
+  color: $bgColor;
+
+  h4 {
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 18px;
+    color: $bgColor;
+  }
+
+  a {
+    color: $bgColor;
+  }
+
+  a:hover {
+    border-bottom: 1px solid $bgColor;
+  }
+}
+
+.getInTouch {
+  color: $accentColor;
+
+  .formItem {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 50px;
+    font-weight: 500;
+  }
+
+  label {
+    @include formLabel;
+    color: $accentColor;
+  }
+
+  input,
+  textarea {
+    @include formField;
+    padding: 16px;
+    margin-top: 5px;
+  }
+
+  input {
+    margin-bottom: 20px;
+  }
+
+  button {
+    @include btnYellow;
+    margin-top: 30px;
+    margin-right: 25px;
+  }
+}
+
+.formField {
+  position: relative;
+}
+
+.formValidation {
+  @include formFieldValidation;
+}

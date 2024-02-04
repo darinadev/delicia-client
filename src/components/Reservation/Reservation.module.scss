@@ -1,0 +1,89 @@
+@import "../../variables.scss";
+@import "../../mixins.scss";
+
+.header {
+  @include pageHeader;
+}
+
+.title {
+  @include pageTitle;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 80px;
+
+  label {
+    @include formLabel;
+    color: $accentColor;
+  }
+
+  input,
+  textarea {
+    @include formField;
+    caret-color: $bgColor;
+  }
+}
+
+.formFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 50px;
+  width: 100%;
+}
+
+.formItem {
+  width: 100%;
+
+  label {
+    @include formLabel;
+  }
+
+  input,
+  textarea {
+    @include formField;
+  }
+}
+
+.formField {
+  input {
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  textarea {
+    height: 150px;
+    padding: 15px;
+  }
+}
+
+.formField,
+.formSelect {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  input {
+    margin: 0;
+  }
+}
+
+.formSelect {
+  svg {
+    height: 15px;
+    fill: $bgColorDarker;
+  }
+}
+
+.formValidation {
+  @include formFieldValidation;
+}
+
+.formButton {
+  @include btnYellow;
+  margin-top: 30px;
+}

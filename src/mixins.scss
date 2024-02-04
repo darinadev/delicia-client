@@ -1,0 +1,129 @@
+@import "./variables.scss";
+
+@mixin btn {
+  position: relative;
+  z-index: 1;
+  width: 170px;
+  height: 50px;
+  text-transform: uppercase;
+  font-size: 16px;
+  overflow: hidden;
+  transition: all 0.5s;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 0%;
+    height: 100%;
+    transition: all 0.5s;
+  }
+
+  &:hover:enabled:before {
+    width: 100%;
+  }
+}
+
+@mixin btnYellow {
+  @include btn;
+  background-color: $accentColor;
+  color: $bgColorDarker;
+
+  &:before {
+    background-color: $accentColorHover;
+  }
+}
+
+@mixin btnBlue {
+  @include btn;
+  background-color: $bgColor;
+  color: $accentColor;
+
+  &:before {
+    background-color: $bgColorHover;
+  }
+}
+
+@mixin formField {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  background-color: $accentColorHover;
+  color: $bgColorDarker;
+
+  &:hover,
+  &:focus {
+    background-color: $textColor;
+  }
+}
+
+@mixin formLabel {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+@mixin formFieldValidation {
+  position: absolute;
+  bottom: -68px;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 25px;
+  font-size: 15px;
+  background: $errorColor;
+  color: $textColor;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 10px 8px 10px;
+    border-color: transparent transparent $errorColor transparent;
+  }
+}
+
+@mixin pageHeader {
+  position: relative;
+  height: calc(100vh - 80px);
+
+  img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80vw;
+    height: inherit;
+    object-fit: cover;
+  }
+}
+
+@mixin pageTitle {
+  position: relative;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 1180px;
+  height: inherit;
+  margin: 0 auto;
+
+  h1 {
+    width: 1000px;
+    margin-bottom: 40px;
+    font-size: 80px;
+    color: $textColor;
+    text-transform: uppercase;
+
+    span {
+      color: $accentColor;
+    }
+  }
+}

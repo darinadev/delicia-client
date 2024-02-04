@@ -1,0 +1,127 @@
+@import "../../variables.scss";
+@import "../../mixins.scss";
+
+.header {
+  @include pageHeader;
+}
+
+.homeInfo {
+  position: relative;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+  width: 1180px;
+  margin: 0 auto;
+
+  h1 {
+    width: 1000px;
+    margin-bottom: 40px;
+    font-size: 60px;
+    color: #fff;
+    text-transform: uppercase;
+
+    span {
+      color: $accentColor;
+    }
+  }
+}
+
+.homeButton {
+  @include btnYellow;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: $bgColor;
+
+  &:hover:before {
+    width: 100%;
+  }
+}
+
+.advantages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 40px;
+  width: 1180px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.advantage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 25px 25px 30px 25px;
+  text-align: center;
+  color: $bgColorDarker;
+  background-color: $accentColor;
+
+  svg {
+    fill: $bgColorDarker;
+    height: 60px;
+  }
+
+  h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: justify;
+  }
+}
+
+.feedback {
+  margin-top: 100px;
+  padding: 50px 0;
+  background-color: $accentColor;
+  color: $bgColor;
+
+  .feedbackWrapper {
+    width: 1180px;
+    margin: 0 auto;
+  }
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 50px;
+    font-weight: 500;
+  }
+
+  label {
+    @include formLabel;
+    color: $bgColor;
+  }
+
+  button {
+    @include btnBlue;
+    margin-top: 30px;
+    margin-right: 25px;
+  }
+}
+
+.formField {
+  position: relative;
+
+  input,
+  textarea {
+    @include formField;
+    margin-top: 5px;
+    padding: 16px;
+  }
+
+  input {
+    margin-bottom: 20px;
+  }
+}
+
+.formValidation {
+  @include formFieldValidation;
+}

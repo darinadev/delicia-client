@@ -1,0 +1,41 @@
+@import "../../../variables.scss";
+@import "../../../mixins.scss";
+
+.thankYouPage {
+  position: relative;
+  z-index: 1;
+  width: 1180px;
+  margin: 0 auto;
+
+  h1 {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    font-size: 70px;
+    text-transform: uppercase;
+    color: $accentColor;
+  }
+
+  p {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  button {
+    @include btnYellow;
+    margin-top: 50px;
+  }
+
+  a {
+    color: $bgColorDarker;
+  }
+
+  svg {
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    z-index: -1;
+    height: 250px;
+    fill: $bgColorHover;
+    transform: rotate(15deg);
+  }
+}

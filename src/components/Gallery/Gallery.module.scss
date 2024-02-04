@@ -1,0 +1,164 @@
+@import "../../variables.scss";
+@import "../../mixins.scss";
+
+.gallery {
+  position: relative;
+  z-index: 1;
+
+  &.active {
+    z-index: 399;
+  }
+}
+
+.title {
+  width: 1180px;
+  margin: 60px auto;
+  margin-bottom: 80px;
+  font-size: 80px;
+  color: $textColor;
+  text-transform: uppercase;
+
+  span {
+    color: $accentColor;
+  }
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  width: 1180px;
+  margin: 0 auto;
+}
+
+.image {
+  position: relative;
+  height: calc(1180px / 3 - 50px);
+  width: 100%;
+  transition: all 0.5s ease;
+
+  &:hover .imageWrapper {
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  img {
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+  }
+
+  .imageWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    width: inherit;
+    background-color: #000000;
+    opacity: 0;
+
+    svg {
+      height: 35px;
+      fill: $accentColor;
+    }
+  }
+}
+
+.galleryButton {
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 50px;
+
+  button {
+    @include btnYellow;
+    width: 200px;
+  }
+}
+
+.sliderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+
+  svg {
+    fill: $bgColorDarker;
+  }
+}
+
+.sliderControlPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  button {
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+    padding: 13px;
+    background-color: $accentColor;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $accentColorHover;
+      transition: all 0.3s ease;
+    }
+  }
+
+  p {
+    color: $accentColorHover;
+    font-size: 17px;
+  }
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+
+  button {
+    display: grid;
+    align-self: center;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border: 0;
+    background-color: $accentColor;
+    transition: all 0.3s ease;
+
+    &:disabled {
+      background-color: $greyColor;
+    }
+
+    &:hover:enabled {
+      background-color: $accentColorHover;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.slide {
+  height: 600px;
+  width: 1000px;
+  margin: 0 auto;
+  img {
+    height: inherit;
+    width: inherit;
+    object-fit: contain;
+  }
+}
