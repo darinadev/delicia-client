@@ -15,8 +15,8 @@ import { Footer } from "../Footer/Footer";
 import { Page404 } from "../Page404/Page404";
 import { ThankYouPage } from "../common/ThankYouPage/ThankYouPage";
 
-import store from "../../redux/store";
-import { setProducts } from "../../redux/actions/cart-actions";
+import { store } from "../../redux/store";
+import { setProducts } from "../../redux/reducers/cart-reducer";
 
 const Home = lazy(() => import("../Home/Home"));
 const About = lazy(() => import("../About/About"));

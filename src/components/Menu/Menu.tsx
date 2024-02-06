@@ -3,7 +3,7 @@ import styles from "./Menu.module.scss";
 import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { Section } from "./Section";
-import { setCurrentCategory } from "../../redux/actions/menu-actions";
+import { setCurrentCategory } from "../../redux/reducers/menu-reducer";
 import {
   getCurrentCategory,
   getMenuCategories,

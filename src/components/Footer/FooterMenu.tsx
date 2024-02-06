@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCategory } from "../../redux/actions/menu-actions";
+import { setCurrentCategory } from "../../redux/reducers/menu-reducer";
 import { getMenuCategories } from "../../selectors/selectors";
 import { HashLink } from "react-router-hash-link";
 

@@ -29,6 +29,11 @@ export type OrderingInfoType = {
   shipping: string;
 };
 
+export type CreateOrderParamsType = {
+  order: OrderingInfoType,
+  subtotalPrice: number
+}
+
 export type ImageType = {
   id: number;
   image: string;

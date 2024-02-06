@@ -1,13 +1,13 @@
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { MenuType } from "../../types/types";
-import { MenuActionTypes } from "../action-types";
-import { SET_CURRENT_CATEGORY } from "../constants";
 
 export type InitialStateType = {
   menu: Array<MenuType>;
   currentCategory: string;
 };
 
-let initialState: InitialStateType = {
+const initialState: InitialStateType = {
   menu: [
     {
       id: 0,
@@ -291,19 +291,16 @@ let initialState: InitialStateType = {
   currentCategory: "breakfast",
 };
 
-const menuReducer = (
-  state = initialState,
-  action: MenuActionTypes
-): InitialStateType => {
-  switch (action.type) {
-    case SET_CURRENT_CATEGORY:
-      return {
-        ...state,
-        currentCategory: action.currentCategory,
-      };
-    default:
-      return state;
-  }
-};
+export const menuSlice = createSlice({
+  name: 'menu',
+  initialState,
+  reducers: {
+    setCurrentCategory: (state, action: PayloadAction<string>) => {
+      state.currentCategory = action.payload;
+    },
+  },
+})
 
-export default menuReducer;
+export const { setCurrentCategory } = menuSlice.actions;
+
+export default menuSlice.reducer;

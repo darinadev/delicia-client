@@ -1,29 +1,33 @@
-import { AppStateType } from "../redux/store";
-import { CartProductType } from "../types/types";
+import { createSelector } from 'reselect';
+import { RootState } from "../redux/store";
+import { CartProductType, MenuType } from "../types/types";
 
-export const getMenuCategories = (state: AppStateType) => {
-  return state.menu.menu.map((item: any) => item.category);
-};
+export const getMenuCategories = createSelector(
+  [(state: RootState) => state.menu],
+  menu => {
+    return menu.menu.map((item: MenuType) => item.category)
+  }
+);
 
-export const getCurrentCategory = (state: AppStateType) => {
+export const getCurrentCategory = (state: RootState) => {
   return state.menu.currentCategory;
 };
 
-export const getMenuProducts = (state: AppStateType) => {
+export const getMenuProducts = (state: RootState) => {
   return state.menu.menu.find(
-    (item: any) => item.category === state.menu.currentCategory
+    (item: MenuType) => item.category === state.menu.currentCategory
   )?.items;
 };
 
-export const getCartProducts = (state: AppStateType) => {
+export const getCartProducts = (state: RootState) => {
   return state.cart.products;
 };
 
-export const getAddingInProgress = (state: AppStateType) => {
+export const getAddingInProgress = (state: RootState) => {
   return state.cart.addingInProgress;
 };
 
-export const getSubtotalPrice = (state: AppStateType) => {
+export const getSubtotalPrice = (state: RootState) => {
   let subtotalPrice = 0;
   state.cart.products.forEach(
     (product: CartProductType) =>
@@ -32,6 +36,6 @@ export const getSubtotalPrice = (state: AppStateType) => {
   return subtotalPrice;
 };
 
-export const getShipping = (state: AppStateType) => {
+export const getShipping = (state: RootState) => {
   return state.cart.shipping;
 };

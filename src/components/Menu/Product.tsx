@@ -1,18 +1,19 @@
 import React from "react";
 import styles from "./Menu.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/actions/cart-actions";
+import { addToCart } from "../../redux/thunks/cart-thunks";
 import {
   getAddingInProgress,
   getCartProducts,
 } from "../../selectors/selectors";
 import { MenuProductType, CartProductType } from "../../types/types";
 import { NavLink } from "react-router-dom";
+import { AppDispatch } from "../../redux/store";
 
 export const Product: React.FC<MenuProductType> = (props) => {
   const addingInProgress = useSelector(getAddingInProgress);
   const products = useSelector(getCartProducts);
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div className={styles.product}>
@@ -31,7 +32,13 @@ export const Product: React.FC<MenuProductType> = (props) => {
           disabled={addingInProgress.some((id: number) => id === props.id)}
           onClick={() => {
             dispatch(
-              addToCart(props.id, props.title, props.price, 1, props.price)
+              addToCart({
+                id: props.id,
+                title: props.title,
+                price: props.price,
+                quantity: 1,
+                totalProductPrice: props.price
+              })
             );
           }}
         >

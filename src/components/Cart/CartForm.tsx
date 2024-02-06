@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import { OrderingInfoType } from "../../types/types";
-import { createOrder } from "../../redux/actions/cart-actions";
+import { createOrder } from "../../redux/thunks/cart-thunks";
 import { OrderInfo } from "../common/OrderInfo/OrderInfo";
 import { getSubtotalPrice } from "../../selectors/selectors";
 import { Shipping } from "./Shipping";
+import { AppDispatch } from "../../redux/store";
 
 const cartFormValidate = (values: OrderingInfoType) => {
   type ErrorsType = {
@@ -62,7 +63,7 @@ const cartFormValidate = (values: OrderingInfoType) => {
 
 const CartForm: React.FC = () => {
   const [isShipping, setIsShipping] = useState(false);
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const subtotalPrice = useSelector(getSubtotalPrice);
 
@@ -70,7 +71,10 @@ const CartForm: React.FC = () => {
     values: OrderingInfoType,
     { setSubmitting, resetForm }: FormikHelpers<OrderingInfoType>
   ) => {
-    dispatch(createOrder(values, subtotalPrice));
+    dispatch(createOrder({
+      order: values,
+      subtotalPrice: subtotalPrice
+    }));
     setSubmitting(false);
     resetForm();
     navigate("/ordered");

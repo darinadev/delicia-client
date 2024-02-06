@@ -1,15 +1,6 @@
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { CartProductType } from "../../types/types";
-import { CartActionTypes } from "../action-types";
-import {
-  ADD_PRODUCT_TO_CART,
-  REMOVE_PRODUCT_FROM_CART,
-  SET_IS_FETCHING,
-  SET_PRODUCTS,
-  CLEAR_PRODUCTS,
-  INCREASE_QUANTITY,
-  DECREASE_QUANTITY,
-  SET_ADDING_IN_PROGRESS,
-} from "../constants";
 
 export type InitialStateType = {
   products: Array<CartProductType>;
@@ -25,75 +16,72 @@ const initialState: InitialStateType = {
   addingInProgress: [],
 };
 
-const cartReducer = (
-  state = initialState,
-  action: CartActionTypes
-): InitialStateType => {
-  switch (action.type) {
-    case ADD_PRODUCT_TO_CART:
-      return {
-        ...state,
-        products: [...state.products, action.payload],
-      };
-    case REMOVE_PRODUCT_FROM_CART:
-      return {
-        ...state,
-        products: state.products.filter(
-          (product: CartProductType) => product.id !== action.productId
-        ),
-      };
-    case SET_IS_FETCHING:
-    case SET_PRODUCTS:
-      return {
-        ...state,
-        ...action.payload,
-      };
-    case CLEAR_PRODUCTS:
-      return {
-        ...state,
-        products: [],
-      };
-    case INCREASE_QUANTITY:
-      return {
-        ...state,
-        products: state.products.map((product: CartProductType) => {
-          if (product.id === action.productId) {
-            return {
-              ...product,
-              totalProductPrice: product.totalProductPrice + product.price,
-              quantity: product.quantity + 1,
-            };
-          }
-          return product;
-        }),
-      };
-    case DECREASE_QUANTITY:
-      return {
-        ...state,
-        products: state.products.map((product: CartProductType) => {
-          if (
-            product.id === action.productId &&
-            product.totalProductPrice > product.price
-          ) {
-            return {
-              ...product,
-              totalProductPrice: product.totalProductPrice - product.price,
-              quantity: product.quantity - 1,
-            };
-          }
-          return product;
-        }),
-      };
-    case SET_ADDING_IN_PROGRESS:
-      return {
-        ...state,
-        addingInProgress: action.isFetching
-          ? [...state.addingInProgress, action.productId]
-          : state.addingInProgress.filter((id) => id !== action.productId),
-      };
-    default:
-      return state;
-  }
-};
+export const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    addProductToCart: (state, action: PayloadAction<CartProductType>) => {
+      state.products.push(action.payload);
+    },
+    removeProductFromCart: (state, action: PayloadAction<number>) => {
+      state.products = state.products.filter(
+        (product: CartProductType) => product.id !== action.payload
+      );
+    },
+    setIsFetching: (state, action: PayloadAction<boolean>) => {
+      state.isFetching = action.payload;
+    },
+    setProducts: (state, action: PayloadAction<Array<CartProductType>>) => {
+      state.products = action.payload;
+    },
+    clearProducts: (state) => {
+      state.products = [];
+    },
+    increaseProductQuantity: (state, action: PayloadAction<number>) => {
+      state.products = state.products.map((product: CartProductType) => {
+        if (product.id === action.payload) {
+          return {
+            ...product,
+            totalProductPrice: product.totalProductPrice + product.price,
+            quantity: product.quantity + 1,
+          };
+        };
+        return product;
+      })
+    },
+    decreaseProductQuantity: (state, action: PayloadAction<number>) => {
+      state.products = state.products.map((product: CartProductType) => {
+        if (
+          product.id === action.payload &&
+          product.totalProductPrice > product.price
+        ) {
+          return {
+            ...product,
+            totalProductPrice: product.totalProductPrice - product.price,
+            quantity: product.quantity - 1,
+          };
+        };
+        return product;
+      })
+    },
+    setAddingInProgress: (state, action: PayloadAction<{ isFetching: boolean, productId: number}>) => {
+      const { isFetching, productId } = action.payload
+      state.addingInProgress = isFetching
+        ? [...state.addingInProgress, productId]
+        : state.addingInProgress.filter((id) => id !== productId)
+    },
+  },
+})
 
-export default cartReducer;
+export const {
+  addProductToCart,
+  removeProductFromCart,
+  setIsFetching,
+  setProducts,
+  clearProducts,
+  increaseProductQuantity,
+  decreaseProductQuantity,
+  setAddingInProgress,
+} = cartSlice.actions;
+
+export default cartSlice.reducer;

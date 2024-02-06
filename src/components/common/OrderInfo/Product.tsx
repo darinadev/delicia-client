@@ -6,11 +6,12 @@ import {
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
-} from "../../../redux/actions/cart-actions";
+} from "../../../redux/thunks/cart-thunks";
 import { CartProductType } from "../../../types/types";
 import { ReactComponent as Minus } from "../../../assets/svg/minus.svg";
 import { ReactComponent as Plus } from "../../../assets/svg/plus.svg";
 import { ReactComponent as Close } from "../../../assets/svg/close.svg";
+import { AppDispatch } from "../../../redux/store";
 
 type PropsType = {
   product: CartProductType;
@@ -19,7 +20,7 @@ type PropsType = {
 
 export const Product: React.FC<PropsType> = React.memo(
   ({ product, isChangable }) => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useDispatch<AppDispatch>();
     const { id, title, price, quantity, totalProductPrice } = product;
     const productQuantity = isChangable ? (
       <div className={styles.quantity}>
