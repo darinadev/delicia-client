@@ -12,7 +12,7 @@ export const Footer = () => {
         <FooterNav />
         <FooterMenu />
       </div>
-      <p>Copyright © 2021 Delicia. All Rights Reserved</p>
+      <p>Copyright © 2024 Delicia. All Rights Reserved</p>
     </div>
   );
 };
